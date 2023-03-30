@@ -8,6 +8,8 @@ DateTime dateTime = DateTime.Now;
 
 
 var client = new swaggerClient("https://localhost:7220/", new HttpClient());
+
+
 foreach (var item in await client.GetWeatherForecastAsync())
 {
     Console.WriteLine($"{item.Date} {item.TemperatureC}");
