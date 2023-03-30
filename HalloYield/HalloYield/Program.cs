@@ -1,8 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using HalloYield.Model;
 using Microsoft.Data.SqlClient;
-using System.ComponentModel.DataAnnotations;
 
 Console.WriteLine("Hello, World!");
+
+Customer customer = new Customer();
+var customer2 = new Customer();
+Customer customer3 = new();
 
 
 
@@ -10,7 +13,6 @@ foreach (var item in GetText())
 {
     Console.WriteLine(item);
 }
-
 
 await foreach (var item in GetAllCustomers())
 {
@@ -30,7 +32,12 @@ static IEnumerable<string> GetText()
 
 static async IAsyncEnumerable<Customer> GetAllCustomers()
 {
-    var connectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Northwnd;Integrated Security=True"; // replace with your own connection string
+    string tt = """lerkjglkmregklöregm  "wichtig"      relö kgmrelkgmlkre         lökergmlerkmg""";
+
+    await Console.Out.WriteLineAsync(   tt);
+
+    var db = "Northwnd";
+    var connectionString = @$"Data Source=(localdb)\mssqllocaldb;Initial Catalog={db};Integrated Security=True"; // replace with your own connection string
 
     using var connection = new SqlConnection(connectionString);
     var command = new SqlCommand("SELECT * FROM Customers", connection);
@@ -54,31 +61,4 @@ static async IAsyncEnumerable<Customer> GetAllCustomers()
         };
         yield return customer;
     }
-}
-
-
-
-public class Customer
-{
-    public string CustomerID { get; set; }
-
-    public string CompanyName { get; set; }
-
-    public string ContactName { get; set; }
-
-    public string ContactTitle { get; set; }
-
-    public string Address { get; set; }
-
-    public string City { get; set; }
-
-    public string Region { get; set; }
-
-    public string PostalCode { get; set; }
-
-    public string Country { get; set; }
-
-    public string Phone { get; set; }
-
-    public string Fax { get; set; }
 }
